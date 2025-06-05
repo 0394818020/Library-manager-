@@ -6,6 +6,8 @@ package VIEW;
 
 import CONTROLLER.ReaderController;
 import MODEL.Reader;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,7 +30,7 @@ public class updatereader extends javax.swing.JDialog {
         
         mainview = (MAINVIEW) parent;
         model = mainview.getreaderModel();
-        
+        hide_error_signal ();
         show_fix_infor();
     }
 
@@ -49,6 +51,9 @@ public class updatereader extends javax.swing.JDialog {
         name = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -78,6 +83,15 @@ public class updatereader extends javax.swing.JDialog {
             }
         });
 
+        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel4.setText("chỉ bao gồm: kí tự");
+
+        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel5.setText("chỉ bao gồm: số");
+
+        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6.setText("nhập sai email!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,23 +99,26 @@ public class updatereader extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,19 +127,28 @@ public class updatereader extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(year, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -141,12 +167,62 @@ public class updatereader extends javax.swing.JDialog {
         // TODO add your handling code here:
         int id = (int) model.getValueAt(mainview.getfixId(), 0);
         String name = this.name.getText();
-        int year = Integer.parseInt(this.year.getText());
+        String yearOfBirth = this.year.getText();
         String email = this.email.getText();       
-        Reader r = new Reader(id, name, year, email);
-        readerController.update(r);
-        mainview.show_Reader();
-        this.dispose();
+        boolean isOk = true;
+        
+        if (name.length() == 0) {
+            this.name.setBorder(new LineBorder(Color.RED));
+            this.jLabel4.setText("Không được để trống!");
+            isOk = false;
+        }
+        else if (!name.matches("[\\p{L} ]+")) {
+            this.name.setBorder(new LineBorder(Color.RED));
+            this.jLabel4.setText("chỉ bao gồm: kí tự");
+            isOk = false;
+        }
+        else {
+            this.name.setBorder(new LineBorder(Color.BLACK));
+            this.jLabel4.setText(" ");
+        }
+        
+        if (yearOfBirth.length() == 0) {
+            this.year.setBorder(new LineBorder(Color.RED));
+            this.jLabel5.setText("Không được để trống!");
+            isOk = false;
+        }
+        else if (!yearOfBirth.matches("^[1-2][0-9]{3}$")) {
+            this.year.setBorder(new LineBorder(Color.RED));
+            this.jLabel5.setText("chỉ gồm: số [1xxx , 2xxx]");
+            isOk = false;
+        }
+        else {
+            this.year.setBorder(new LineBorder(Color.BLACK));
+            this.jLabel5.setText(" ");
+        }
+        
+        if (email.length() == 0) {
+            this.email.setBorder(new LineBorder(Color.RED));
+            this.jLabel6.setText("Không được để trống!");
+            isOk = false;
+        }
+        else if (email.matches("^[\\w-\\.]+@[\\w-]\\.[a-z]{2,4}$") || email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[a-z]{2,}$")) {
+            this.email.setBorder(new LineBorder(Color.BLACK));
+            this.jLabel6.setText(" ");
+        }
+        else {
+            this.email.setBorder(new LineBorder(Color.RED));
+            this.jLabel6.setText("nhập lại email!");
+            isOk = false;
+        }
+        
+        if (isOk) {
+            int yearOfBirth_ = Integer.parseInt(yearOfBirth);
+            readerController.add(name, yearOfBirth_, email);
+            mainview.show_Reader();
+            hide_error_signal ();
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -198,6 +274,9 @@ public class updatereader extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField name;
     private javax.swing.JTextField year;
     // End of variables declaration//GEN-END:variables
@@ -207,4 +286,14 @@ public class updatereader extends javax.swing.JDialog {
         year.setText(model.getValueAt(id, 2).toString());
         email.setText(model.getValueAt(id, 3).toString());
     }
+    
+    void hide_error_signal () {
+        this.jLabel4.setText(" ");
+        this.jLabel5.setText(" ");
+        this.jLabel6.setText(" ");
+        
+        this.name.setBorder(new LineBorder(Color.BLACK));
+        this.email.setBorder((new LineBorder(Color.BLACK)));
+        this.year.setBorder(new LineBorder(Color.BLACK));
+    } 
 }
