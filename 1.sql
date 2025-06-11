@@ -12,7 +12,7 @@ create table Reader (
     name VARCHAR (100),
     yearOfBirth INT,
     email VARCHAR (100)
-    );
+);
     
 create table Loan (
 	id INT primary key auto_increment,
@@ -23,6 +23,20 @@ create table Loan (
     status varchar(100),
     foreign key (bookId) references Book(id),
     foreign key (readerId) references Reader(id)
+);
+
+create table NhanVien (
+	maNV varchar(100),
+    name varchar(100),
+    email varchar(100),
+    yearOfBirth INT,
+    number_phone varchar(10)
+);
+
+create table TaiKhoan (
+	maNV varchar(100),
+    lg_name varchar(100),
+    lg_pass varchar(100)
 );
 
 -- Lấy dữ liệu cho phiếu mượn
