@@ -14,16 +14,26 @@ public class NhanVien {
     private String email;
     private int yearOfBirth;
     private String number_phone;
+    private String ChucVu;
 
     public NhanVien() {
     }
 
-    public NhanVien(String maNV, String name, String email, int yearOfBirth, String number_phone) {
+    public NhanVien(String maNV, String name, String email, int yearOfBirth, String number_phone, String ChucVu) {
         this.maNV = maNV;
         this.name = name;
         this.email = email;
         this.yearOfBirth = yearOfBirth;
         this.number_phone = number_phone;
+        this.ChucVu = ChucVu;
+    }
+
+    public String getChucVu() {
+        return ChucVu;
+    }
+
+    public void setChucVu(String ChucVu) {
+        this.ChucVu = ChucVu;
     }
 
     public String getMaNV() {
