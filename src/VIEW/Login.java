@@ -5,6 +5,7 @@
 package VIEW;
 
 import CONTROLLER.NhanVienController;
+import CONTROLLER.SecurityController;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
@@ -19,6 +20,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     private NhanVienController nvc = new NhanVienController();
+    private SecurityController sc = new SecurityController();
     
     public Login() {
         initComponents();
@@ -178,6 +180,8 @@ public class Login extends javax.swing.JFrame {
         }
         
         if (isOk) {
+            lg_name = sc.SHA256(lg_name);
+            lg_pass = sc.SHA256(lg_pass);
             if (nvc.checking_account(maNV, lg_name, lg_pass)) {
                 JOptionPane.showMessageDialog(rootPane, "ĐĂNG NHẬP THÀNH CÔNG!");
                 new MAINVIEW();
