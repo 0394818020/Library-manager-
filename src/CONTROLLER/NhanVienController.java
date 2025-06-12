@@ -13,7 +13,7 @@ import DAO.NhanVienDAO;
 public class NhanVienController {
     private NhanVienDAO dao = new NhanVienDAO();
     
-    public boolean checking_account (String maNV, String lg_name, String lg_pass) {
-        return dao.account_checking(maNV, lg_name, lg_pass);
+    public boolean checking_account (String role, String maNV, String lg_name, String lg_pass) {
+        return dao.account_checking(role, maNV, lg_name, lg_pass);
     }
 }

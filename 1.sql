@@ -30,14 +30,16 @@ create table NhanVien (
     name varchar(100),
     email varchar(100),
     yearOfBirth INT,
-    number_phone varchar(10)
-);
+    number_phone varchar(10),
+    ChucVu varchar(100)
+    );
 
 create table TaiKhoan (
+	ChucVu varchar(100),
 	maNV varchar(100),
     lg_name varchar(100),
     lg_pass varchar(100)
-);
+    );
 
 -- Lấy dữ liệu cho phiếu mượn
 SELECT l.id, b.title AS book_title, r.name AS reader_name, l.borrowDate, l.returnDate, l.status FROM Loan l
