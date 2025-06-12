@@ -8,6 +8,7 @@ import CONTROLLER.*;
 import MODEL.Book;
 import MODEL.Loan;
 import MODEL.Loan_manager;
+import MODEL.NhanVien;
 import MODEL.Reader;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,8 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
     private DefaultTableModel model_reader;
     private List<Loan_manager> list_loan;
     private DefaultTableModel model_loan;
+    private List<NhanVien> list_nhanvien;
+    private DefaultTableModel model_nhanvien;
     
     public MAINVIEW() {
         initComponents();
@@ -49,14 +52,18 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         model_reader = (DefaultTableModel) jTable2.getModel();
         list_loan = new ArrayList<>();
         model_loan = (DefaultTableModel) jTable3.getModel();
+        list_nhanvien = new ArrayList<>();
+        model_nhanvien = (DefaultTableModel) jTable4.getModel();
         
         jTable1.setAutoCreateRowSorter(true);
         jTable2.setAutoCreateRowSorter(true);
         jTable3.setAutoCreateRowSorter(true);
+        jTable4.setAutoCreateRowSorter(true);
         
         show_Book();
         show_Reader();
         show_Loan();
+        show_nhanvien();
         loanController.update_status();
     }
 
@@ -499,6 +506,11 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         showData(list_loan, model_loan);
     }
     
+    private void show_nhanvien() {
+        //hien thi nhan vien len bang
+        showData(list_nhanvien, model_nhanvien);
+    }
+    
     public int getfixId () {
         return fix_id;
     }
@@ -534,6 +546,14 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
                     loan.getId(), loan.getTitle(), loan.getName(), loan.getBorrowDate(), loan.getReturnDate(), loan.getStatus()
                 });
             }
+            if (b instanceof NhanVien) {
+                NhanVien nv = (NhanVien) b;
+                model.addRow(new Object[] {
+                    nv.getMaNV(), nv.getName(), nv.getEmail(), nv.getYearOfBirth(), nv.getNumber_phone(), nv.getChucVu()
+                });
+            }
         }
     }
+
+    
 }
