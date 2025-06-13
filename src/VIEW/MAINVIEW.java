@@ -468,6 +468,7 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
 
     private void THEM_SACH4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_THEM_SACH4ActionPerformed
         // TODO add your handling code here:
+        new addnv(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_THEM_SACH4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
