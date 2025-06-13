@@ -58,7 +58,18 @@ public class NhanVienDAO implements BRDAO<NhanVien>{
     public void remove(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
+    public void remove (String maNV) {
+        try (Connection conn = DBConnection.connection()) {
+            String sql = "DELETE FROM NhanVien WHERE maNV = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, maNV);
+            ps.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
     @Override
     public void update(NhanVien object) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

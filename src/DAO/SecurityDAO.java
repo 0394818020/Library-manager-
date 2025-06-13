@@ -12,6 +12,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.lang.String;
 public class SecurityDAO {
+    //Chuyển đổi thông tin sang HashCode
     public static String SHA256(String input) {
         try {
             //Tạo đối tượng chứa thuật toán SHA-256

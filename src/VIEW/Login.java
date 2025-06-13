@@ -7,6 +7,7 @@ package VIEW;
 import CONTROLLER.NhanVienController;
 import CONTROLLER.SecurityController;
 import java.awt.Color;
+import javax.management.relation.Role;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
@@ -21,6 +22,8 @@ public class Login extends javax.swing.JFrame {
      */
     private NhanVienController nvc = new NhanVienController();
     private SecurityController sc = new SecurityController();
+    
+    private String dinhdanh = null;
     
     public Login() {
         initComponents();
@@ -249,6 +252,7 @@ public class Login extends javax.swing.JFrame {
             jPasswordField1.setBorder(new LineBorder(Color.BLACK));
         }
         if (isOk) {
+            dinhdanh = role;
             lg_name = sc.SHA256(lg_name);
             lg_pass = sc.SHA256(lg_pass);
             if (nvc.checking_account(role, maNV, lg_name, lg_pass)) {
@@ -327,4 +331,8 @@ public class Login extends javax.swing.JFrame {
         jRadioButton2.setBorder(new LineBorder(Color.BLACK));
         jRadioButton3.setBorder(new LineBorder(Color.BLACK));
     }
+    
+    public String getRole () {
+        return dinhdanh;
+    }  
 }

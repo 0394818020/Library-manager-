@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author Dat Huy
  */
 public class BookDAO implements BRDAO<Book>{
-
+    //Trả về danh sách các cuốn sách có trong thư viện
     @Override
     public List<Book> getALLlist() {
         List<Book> list = new ArrayList<>();
@@ -38,7 +38,8 @@ public class BookDAO implements BRDAO<Book>{
         
         return list;
     }
-
+    
+    //Thêm sách vào thư viện
     @Override
     public void insert(Book object) {
         try (Connection conn = DBConnection.connection()) {
@@ -56,7 +57,8 @@ public class BookDAO implements BRDAO<Book>{
         }
         
     }
-
+    
+    //Xóa sách khỏi thư viện
     @Override
     public void remove(int id) {
         try (Connection conn = DBConnection.connection()){
@@ -69,7 +71,8 @@ public class BookDAO implements BRDAO<Book>{
             e.printStackTrace();
         }
     }
-
+    
+    //Cập nhật thông tin sách
     @Override
     public void update(Book object) {
         try (Connection conn = DBConnection.connection()) {

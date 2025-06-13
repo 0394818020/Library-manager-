@@ -13,7 +13,8 @@ import java.sql.*;
  * @author Dat Huy
  */
 public class ReaderDAO implements BRDAO<Reader> {
-
+    
+    //Trả về danh sách đọc giả
     @Override
     public List<Reader> getALLlist() {
         List<Reader> list = new ArrayList<>();
@@ -35,7 +36,8 @@ public class ReaderDAO implements BRDAO<Reader> {
         }
         return list;
     }
-
+    
+    //Thêm đọc giả mới vào hệ thống
     @Override
     public void insert(Reader object) {
         try (Connection conn = DBConnection.connection()) {
@@ -49,7 +51,8 @@ public class ReaderDAO implements BRDAO<Reader> {
             e.printStackTrace();
         }
     }
-
+    
+    //Xóa đọc giả theo id
     @Override
     public void remove(int id) {
         try (Connection conn = DBConnection.connection()) {
@@ -61,7 +64,8 @@ public class ReaderDAO implements BRDAO<Reader> {
             e.printStackTrace();
         }
     }
-
+    
+    //Cập nhật thông tin đọc giả
     @Override
     public void update(Reader object) {
         try (Connection conn = DBConnection.connection()) {

@@ -16,7 +16,8 @@ import java.sql.*;
  * @author Dat Huy
  */
 public class LoanDAO{
-  
+    
+    //Trả về dánh sách phiếu mượn
     public List<Loan_manager> getALLlistL () {
         List<Loan_manager> list = new ArrayList<>();
         try (Connection conn = DBConnection.connection()) {
@@ -40,7 +41,8 @@ public class LoanDAO{
         }
         return list;
     }
-
+    
+    //Thêm phiếu mượn vào hệ thống
     public void insert(int id_book, int id_reader, String status) {
         try (Connection conn = DBConnection.connection()) {
             String sql = "INSERT INTO Loan(bookId, readerId, borrowDate, returnDate, status) VALUES (?,?, CURDATE(), CURDATE() + INTERVAL 10 DAY,?)";
@@ -55,6 +57,8 @@ public class LoanDAO{
         }
     }
 
+    
+    //Trả sách theo id của phiếu mượn
     public void remove(int id, int bookId) {
         try (Connection conn = DBConnection.connection()) {
             String sql = "DELETE FROM Loan WHERE id = ?";
@@ -66,7 +70,8 @@ public class LoanDAO{
             e.printStackTrace();
         }
     }
-
+    
+    //Nếu nhân viên xác nhận đã trả sách thì số lượng + 1
     public void update(int bookId) {
         try (Connection conn = DBConnection.connection()) {
             String sql = "UPDATE Book SET quantity = quantity + 1 WHERE id = ?";
@@ -78,6 +83,7 @@ public class LoanDAO{
         }
     }
     
+    //Nếu nhân viên xác nhận đã cho mượn thì số lượng - 1 nếu số lương > 0
     public void update_muon (int id) {
         try (Connection conn = DBConnection.connection()) {
             String sql = "UPDATE Book SET quantity = quantity - 1 WHERE id = ? AND quantity > 0";
@@ -89,6 +95,7 @@ public class LoanDAO{
         }
     }
     
+    //Nếu vượt quá hạn trả thì tình trạng sẽ đổi thành "Quá hạn"
     public void update_tra_sach () {
         try (Connection conn = DBConnection.connection()) {
             String sql = "UPDATE Loan SET status = 'Quá hạn' WHERE status = 'Đang mượn' AND returnDate < CURDATE()";

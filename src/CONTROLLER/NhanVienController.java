@@ -16,4 +16,8 @@ public class NhanVienController {
     public boolean checking_account (String role, String maNV, String lg_name, String lg_pass) {
         return dao.account_checking(role, maNV, lg_name, lg_pass);
     }
+    
+    public void remove (String maNV) {
+        dao.remove(maNV);
+    } 
 }

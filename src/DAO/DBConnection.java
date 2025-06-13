@@ -12,6 +12,7 @@ import java.sql.*;
  * @author Dat Huy
  */
 public class DBConnection {
+    //Kết nối DB
     public static Connection connection () {
         Connection conn = null;
         try {
