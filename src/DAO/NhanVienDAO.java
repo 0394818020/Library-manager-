@@ -10,6 +10,7 @@ package DAO;
  */
 import MODEL.NhanVien;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class NhanVienDAO implements BRDAO<NhanVien>{
@@ -45,14 +46,47 @@ public class NhanVienDAO implements BRDAO<NhanVien>{
     }
 
     @Override
-    public <T> List<T> getALLlist() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<NhanVien> getALLlist() {
+        List<NhanVien> list = new ArrayList<>();
+        try (Connection conn = DBConnection.connection()) {
+            Statement sm = conn.createStatement();
+            String sql = "SELECT * FROM NhanVien";
+            ResultSet rs = sm.executeQuery(sql);
+            while (rs.next()) {
+                list.add(new NhanVien(
+                        rs.getString("maNV"),
+                        rs.getString("name"),
+                        rs.getString("email"),
+                        rs.getInt("yearOfBirth"),
+                        rs.getString("number_phone"),
+                        rs.getString("ChucVu")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     @Override
-    public void insert(NhanVien object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void insert(NhanVien nv) {
+        try (Connection conn = DBConnection.connection()){
+            String sql = "INSERT INTO NhanVien(maNV, name, email, yearOfBirth, number_phone, ChucVu) VALUES (?,?,?,?,?,?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, nv.getMaNV());
+            ps.setString(2, nv.getName());
+            ps.setString(3, nv.getEmail());
+            ps.setInt(4, nv.getYearOfBirth());
+            ps.setString(5, nv.getNumber_phone());
+            ps.setString(6, nv.getChucVu());
+            
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
+    
 
     @Override
     public void remove(int id) {

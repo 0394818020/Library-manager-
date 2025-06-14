@@ -5,6 +5,8 @@
 package CONTROLLER;
 
 import DAO.NhanVienDAO;
+import MODEL.NhanVien;
+import java.util.List;
 
 /**
  *
@@ -20,4 +22,13 @@ public class NhanVienController {
     public void remove (String maNV) {
         dao.remove(maNV);
     } 
+    
+    public List<NhanVien> get_list () {
+        return dao.getALLlist();
+    }
+    
+    public void insert_nv (String maNV, String name, String email, int yearOfBirth, String number_Phone, String ChucVu) {
+        NhanVien nv = new NhanVien(maNV, name, email, yearOfBirth, number_Phone, ChucVu);
+        dao.insert(nv);
+    }
 }

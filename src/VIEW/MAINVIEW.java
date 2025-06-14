@@ -27,6 +27,7 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
     private BookController bookController = new BookController();
     private ReaderController readerController = new ReaderController();
     private LoanController loanController = new LoanController();
+    private NhanVienController nhanVienController = new NhanVienController();
     
     //Khai báo đơn vị của bảng
     private List<Book> list_book;
@@ -42,6 +43,7 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
+        setTitle("Quản lý thư viện");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         list_book = new ArrayList<>();
@@ -291,13 +293,13 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã NV", "Tên", "Email", "Năm sinh", "Số điện thoại"
+                "Mã NV", "Tên", "Email", "Năm sinh", "Số điện thoại", "Chức vụ"
             }
         ));
         jScrollPane4.setViewportView(jTable4);
@@ -572,8 +574,8 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         showData(list_loan, model_loan);
     }
     
-    private void show_nhanvien() {
-        //hien thi nhan vien len bang
+    public void show_nhanvien() {
+        list_nhanvien = nhanVienController.get_list();
         showData(list_nhanvien, model_nhanvien);
     }
     

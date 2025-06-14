@@ -4,6 +4,7 @@
  */
 package VIEW;
 
+import CONTROLLER.NhanVienController;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
@@ -16,10 +17,16 @@ public class addnv extends javax.swing.JDialog {
     /**
      * Creates new form addnv
      */
+    private NhanVienController nvc = new NhanVienController();
+    
+    private MAINVIEW view;
+    
     public addnv(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        
+        view = (MAINVIEW) parent;
         
         hide_error_signal();
     }
@@ -273,11 +280,11 @@ public class addnv extends javax.swing.JDialog {
         boolean isOk = true;
 
         if (jRadioButton6.isSelected()) {
-            role = jRadioButton5.getText();
+            role = jRadioButton6.getText();
             jLabel21.setText(" ");
         }
-        else if (jRadioButton6.isSelected()) {
-            role = jRadioButton6.getText();
+        else if (jRadioButton5.isSelected()) {
+            role = jRadioButton5.getText();
             jLabel21.setText(" ");
         }
         else {
@@ -340,6 +347,11 @@ public class addnv extends javax.swing.JDialog {
             jTextField6.setBorder(new LineBorder(Color.RED));
             isOk = false;
         }
+        else if (!yearOfBirth.matches("^[1-2][0-9]{3}$")) {
+            jTextField6.setBorder(new LineBorder(Color.RED));
+            this.year.setText("chỉ gồm: số [1xxx , 2xxx]");
+            isOk = false;
+        }
         else {
             this.year.setText(" ");
             jTextField6.setBorder(new LineBorder(Color.BLACK));
@@ -354,7 +366,19 @@ public class addnv extends javax.swing.JDialog {
             sdt.setText(" ");
             jTextField7.setBorder(new LineBorder(Color.BLACK));
         }
-
+        
+        if (isOk) {
+            if (role.equals("MT")){
+                role = "Mượn - Trả";
+            }
+            else {
+                role = "Thủ thư";
+            }
+            int year_born = Integer.parseInt(yearOfBirth);
+            nvc.insert_nv(maNV, name, email, year_born, number_Phone, role);
+            view.show_nhanvien();
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
