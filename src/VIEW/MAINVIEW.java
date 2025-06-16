@@ -23,13 +23,15 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
     /**
      * Creates new form MAINVIEW
      */
-    //Khai báo chức năng
+    
+    //Khai báo và khởi tạo đói tượng chứa các chức năng
     private BookController bookController = new BookController();
     private ReaderController readerController = new ReaderController();
     private LoanController loanController = new LoanController();
     private NhanVienController nhanVienController = new NhanVienController();
+    private Login login;
     
-    //Khai báo đơn vị của bảng
+    //Khai báo đơn vị của bảng (List, DefaultTableModel)
     private List<Book> list_book;
     private DefaultTableModel model_book;
     private List<Reader> list_reader;
@@ -55,11 +57,15 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         list_nhanvien = new ArrayList<>();
         model_nhanvien = (DefaultTableModel) jTable4.getModel();
         
+        //sắp xếp tăng, giảm
         jTable1.setAutoCreateRowSorter(true);
         jTable2.setAutoCreateRowSorter(true);
         jTable3.setAutoCreateRowSorter(true);
         jTable4.setAutoCreateRowSorter(true);
         
+        //Hàm phân quyền chức năng
+        
+        //Các hàm hiển thị lên bảng
         show_Book();
         show_Reader();
         show_Loan();
@@ -97,9 +103,9 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
-        THEM_SACH4 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        themnv = new javax.swing.JButton();
+        xoanv = new javax.swing.JButton();
+        suanv = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -304,24 +310,24 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         ));
         jScrollPane4.setViewportView(jTable4);
 
-        THEM_SACH4.setText("THÊM");
-        THEM_SACH4.addActionListener(new java.awt.event.ActionListener() {
+        themnv.setText("THÊM");
+        themnv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                THEM_SACH4ActionPerformed(evt);
+                themnvActionPerformed(evt);
             }
         });
 
-        jButton7.setText("XÓA");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        xoanv.setText("XÓA");
+        xoanv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                xoanvActionPerformed(evt);
             }
         });
 
-        jButton8.setText("SỬA");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        suanv.setText("SỬA");
+        suanv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                suanvActionPerformed(evt);
             }
         });
 
@@ -332,16 +338,16 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(xoanv, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
-                                .addComponent(THEM_SACH4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(themnv, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(suanv, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -353,11 +359,11 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
-                        .addComponent(THEM_SACH4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(themnv, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(xoanv, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(suanv, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -468,12 +474,12 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         show_Loan();
     }//GEN-LAST:event_THEM_SACH3ActionPerformed
 
-    private void THEM_SACH4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_THEM_SACH4ActionPerformed
+    private void themnvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themnvActionPerformed
         // TODO add your handling code here:
         new addnv(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_THEM_SACH4ActionPerformed
+    }//GEN-LAST:event_themnvActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void xoanvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoanvActionPerformed
         // TODO add your handling code here:
         int id = -1;
         id = jTable4.getSelectedColumn();
@@ -483,12 +489,13 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         }
         int _id = (int) jTable4.convertRowIndexToModel(id);
         String __id = (String) model_nhanvien.getValueAt(_id, 0);
-        
-    }//GEN-LAST:event_jButton7ActionPerformed
+        nhanVienController.remove(__id);
+        show_nhanvien();
+    }//GEN-LAST:event_xoanvActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void suanvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suanvActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_suanvActionPerformed
 
     /**
      * @param args the command line arguments
@@ -530,13 +537,10 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
     private javax.swing.JButton THEM_SACH1;
     private javax.swing.JButton THEM_SACH2;
     private javax.swing.JButton THEM_SACH3;
-    private javax.swing.JButton THEM_SACH4;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -550,6 +554,9 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
+    private javax.swing.JButton suanv;
+    private javax.swing.JButton themnv;
+    private javax.swing.JButton xoanv;
     // End of variables declaration//GEN-END:variables
     public DefaultTableModel getreaderModel() {
         return model_reader;
@@ -589,6 +596,20 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
 
     public List<Reader> getList_reader() {
         return list_reader;
+    }
+    
+    public void Level (String role) {
+        String level = role;
+        if (level != "QL") {
+            themnv.setEnabled(false);
+            xoanv.setEnabled(false);
+            suanv.setEnabled(false);
+        }
+        else {
+            themnv.setEnabled(true);
+            xoanv.setEnabled(true);
+            suanv.setEnabled(true);
+        }
     }
     
     @Override

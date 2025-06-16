@@ -7,7 +7,6 @@ package VIEW;
 import CONTROLLER.NhanVienController;
 import CONTROLLER.SecurityController;
 import java.awt.Color;
-import javax.management.relation.Role;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
@@ -22,9 +21,7 @@ public class Login extends javax.swing.JFrame {
      */
     private NhanVienController nvc = new NhanVienController();
     private SecurityController sc = new SecurityController();
-    
-    private String dinhdanh = null;
-    
+        
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
@@ -184,13 +181,12 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jTextField1ActionPerformed
-
+    private String role;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String maNV = jTextField1.getText();
         String lg_name = jTextField2.getText();
         String lg_pass = new String(jPasswordField1.getPassword());
-        String role = null;
         boolean isOk = true;
         
         if (jRadioButton1.isSelected()) {
@@ -252,12 +248,12 @@ public class Login extends javax.swing.JFrame {
             jPasswordField1.setBorder(new LineBorder(Color.BLACK));
         }
         if (isOk) {
-            dinhdanh = role;
             lg_name = sc.SHA256(lg_name);
-            lg_pass = sc.SHA256(lg_pass);
+            lg_pass = sc.SHA256(lg_pass); 
+            
             if (nvc.checking_account(role, maNV, lg_name, lg_pass)) {
                 JOptionPane.showMessageDialog(rootPane, "ĐĂNG NHẬP THÀNH CÔNG!");
-                new MAINVIEW();
+                new MAINVIEW().Level(role);
                 this.dispose();
             }
             else {
@@ -330,9 +326,5 @@ public class Login extends javax.swing.JFrame {
         jRadioButton1.setBorder(new LineBorder(Color.BLACK));
         jRadioButton2.setBorder(new LineBorder(Color.BLACK));
         jRadioButton3.setBorder(new LineBorder(Color.BLACK));
-    }
-    
-    public String getRole () {
-        return dinhdanh;
-    }  
+    } 
 }

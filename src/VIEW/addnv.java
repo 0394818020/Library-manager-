@@ -5,6 +5,7 @@
 package VIEW;
 
 import CONTROLLER.NhanVienController;
+import CONTROLLER.SecurityController;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
@@ -18,6 +19,7 @@ public class addnv extends javax.swing.JDialog {
      * Creates new form addnv
      */
     private NhanVienController nvc = new NhanVienController();
+    private SecurityController securityController = new SecurityController();
     
     private MAINVIEW view;
     
@@ -375,7 +377,16 @@ public class addnv extends javax.swing.JDialog {
                 role = "Thủ thư";
             }
             int year_born = Integer.parseInt(yearOfBirth);
+            
+            //Thêm thông tin nhân viên vào cơ sở dữ liệu
             nvc.insert_nv(maNV, name, email, year_born, number_Phone, role);
+            
+            //Mã hóa trước khi đưa account vào cơ sở dữ liệu 
+            lg_name = securityController.SHA256(lg_name);
+            lg_pass = securityController.SHA256(lg_pass);
+            
+            //Thêm tài khoản nhân viên vào cơ sở dữ liệu
+            nvc.insert_account(role, maNV, lg_name, lg_pass);
             view.show_nhanvien();
             this.dispose();
         }

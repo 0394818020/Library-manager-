@@ -23,7 +23,7 @@ public class NhanVienDAO implements BRDAO<NhanVien>{
             role_name = "THỦ THƯ";
         }
         else if (role.equals("QL")) {
-            role_name = "Quản Lí";
+            role_name = "Quản lí";
         }
         try (Connection conn = DBConnection.connection()) {
             String sql = "SELECT * FROM TaiKhoan WHERE ChucVu = ? AND maNV = ? AND lg_name = ? AND lg_pass = ?";
@@ -87,6 +87,22 @@ public class NhanVienDAO implements BRDAO<NhanVien>{
         }
     }
     
+    public void insert (String role, String maNV, String lg_name, String lg_password) {
+        try (Connection conn = DBConnection.connection()){
+            String sql = "INSERT INTO TaiKhoan (ChucVu, maNV, lg_name, lg_pass) VALUES (?,?,?,?)";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, role);
+            ps.setString(2, maNV);
+            ps.setString(3, lg_name);
+            ps.setString(4, lg_password);
+            
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
 
     @Override
     public void remove(int id) {
@@ -97,6 +113,21 @@ public class NhanVienDAO implements BRDAO<NhanVien>{
         try (Connection conn = DBConnection.connection()) {
             String sql = "DELETE FROM NhanVien WHERE maNV = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, maNV);
+            
+            remove_account(maNV);
+            ps.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void remove_account (String maNV) {
+        try (Connection conn = DBConnection.connection()) {
+            String sql = "DELETE FROM TaiKhoan WHERE maNV = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
             ps.setString(1, maNV);
             ps.executeUpdate();
         }catch (SQLException e) {

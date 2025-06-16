@@ -31,4 +31,8 @@ public class NhanVienController {
         NhanVien nv = new NhanVien(maNV, name, email, yearOfBirth, number_Phone, ChucVu);
         dao.insert(nv);
     }
+    
+    public void insert_account (String role, String maNV, String lg_name, String lg_password) {
+        dao.insert(role, maNV, lg_name, lg_password);
+    }
 }
