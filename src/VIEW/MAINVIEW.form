@@ -439,7 +439,10 @@
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="suanv" min="-2" pref="95" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="suanv" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
+                                          <Component id="suanv1" alignment="1" min="-2" pref="95" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
@@ -463,6 +466,8 @@
                               <Component id="xoanv" min="-2" pref="40" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="suanv" min="-2" pref="40" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="suanv1" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="29" max="32767" attributes="0"/>
@@ -549,10 +554,18 @@
             </Component>
             <Component class="javax.swing.JButton" name="suanv">
               <Properties>
-                <Property name="text" type="java.lang.String" value="S&#x1eec;A"/>
+                <Property name="text" type="java.lang.String" value="S&#x1eec;A TT"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="suanvActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="suanv1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="S&#x1eec;A TK"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="suanv1ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

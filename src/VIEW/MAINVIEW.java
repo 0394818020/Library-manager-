@@ -47,6 +47,7 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         setTitle("Quản lý thư viện");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
+        //Khơi tạo các danh sách và model rỗng
         list_book = new ArrayList<>();
         model_book = (DefaultTableModel) jTable1.getModel();
         list_reader = new ArrayList<>();
@@ -103,6 +104,7 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         themnv = new javax.swing.JButton();
         xoanv = new javax.swing.JButton();
         suanv = new javax.swing.JButton();
+        suanv1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -321,10 +323,17 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
             }
         });
 
-        suanv.setText("SỬA");
+        suanv.setText("SỬA TT");
         suanv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 suanvActionPerformed(evt);
+            }
+        });
+
+        suanv1.setText("SỬA TK");
+        suanv1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suanv1ActionPerformed(evt);
             }
         });
 
@@ -344,7 +353,9 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
                                 .addComponent(themnv, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(suanv, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(suanv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(suanv1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -360,7 +371,9 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
                         .addGap(18, 18, 18)
                         .addComponent(xoanv, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(suanv, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(suanv, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(suanv1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -479,7 +492,7 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
     private void xoanvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoanvActionPerformed
         // TODO add your handling code here:
         int id = -1;
-        id = jTable4.getSelectedColumn();
+        id = jTable4.getSelectedRow();
         if (id == -1) {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn nhân viên!");
             return;
@@ -492,7 +505,20 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
 
     private void suanvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suanvActionPerformed
         // TODO add your handling code here:
+        int id = -1;
+        id = jTable4.getSelectedRow();
+        if (id == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn nhân viên!");
+            return;
+        }
+        int _id = (int) jTable4.convertRowIndexToModel(id);
+        fix_id = _id;
+        new updatenv(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_suanvActionPerformed
+
+    private void suanv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suanv1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_suanv1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -552,6 +578,7 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JButton suanv;
+    private javax.swing.JButton suanv1;
     private javax.swing.JButton themnv;
     private javax.swing.JButton xoanv;
     // End of variables declaration//GEN-END:variables
@@ -612,6 +639,7 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
     
     @Override
     public <T> void showData(List<T> list, DefaultTableModel model) {
+        //Hiển thị thông tin ra bảng
         model.setRowCount(0);
         for (Object b : list) {
             if (b instanceof Book) {
