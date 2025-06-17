@@ -136,8 +136,20 @@ public class NhanVienDAO implements BRDAO<NhanVien>{
     }
     
     @Override
-    public void update(NhanVien object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void update(NhanVien nv) {
+        try (Connection conn = DBConnection.connection()) {
+            String sql = "UPDATE NhanVien SET name = ?, email = ?, yearOfBirth = ?, number_phone = ? WHERE maNV = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, nv.getName());
+            ps.setString(2, nv.getEmail());
+            ps.setInt(3, nv.getYearOfBirth());
+            ps.setString(4, nv.getNumber_phone());
+            ps.setString(5, nv.getMaNV());
+            
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
-    
 }

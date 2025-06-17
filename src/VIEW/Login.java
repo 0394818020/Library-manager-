@@ -253,6 +253,10 @@ public class Login extends javax.swing.JFrame {
             
             if (nvc.checking_account(role, maNV, lg_name, lg_pass)) {
                 JOptionPane.showMessageDialog(rootPane, "ĐĂNG NHẬP THÀNH CÔNG!");
+                
+                //Hàm Level để phân quyền người dùng: 
+                //+ QL có thể truy cập và sửa đổi mọi thứ
+                //+ TT và MT bị giới hạn trong phạm vi người đọc và sách
                 new MAINVIEW().Level(role);
                 this.dispose();
             }

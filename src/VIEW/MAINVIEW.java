@@ -29,7 +29,6 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
     private ReaderController readerController = new ReaderController();
     private LoanController loanController = new LoanController();
     private NhanVienController nhanVienController = new NhanVienController();
-    private Login login;
     
     //Khai báo đơn vị của bảng (List, DefaultTableModel)
     private List<Book> list_book;
@@ -62,8 +61,6 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         jTable2.setAutoCreateRowSorter(true);
         jTable3.setAutoCreateRowSorter(true);
         jTable4.setAutoCreateRowSorter(true);
-        
-        //Hàm phân quyền chức năng
         
         //Các hàm hiển thị lên bảng
         show_Book();
@@ -598,6 +595,7 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         return list_reader;
     }
     
+    //hàm phân quyền
     public void Level (String role) {
         String level = role;
         if (level != "QL") {
