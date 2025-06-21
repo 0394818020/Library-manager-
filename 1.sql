@@ -45,3 +45,15 @@ create table TaiKhoan (
 SELECT l.id, b.title AS book_title, r.name AS reader_name, l.borrowDate, l.returnDate, l.status FROM Loan l
 JOIN Book b ON l.bookId = b.id
 JOIN Reader r ON l.readerId = r.id;
+
+-- Sử lí trả sách
+DELETE FROM Loan WHERE id = ?
+
+-- Cộng 1 sách khi trả
+UPDATE Book SET quantity = quantity + 1 WHERE id = ?
+
+-- trừ 1 sách khi mượn
+UPDATE Book SET quantity = quantity - 1 WHERE id = ? AND quantity > 0
+
+-- Sử lí quá hạn trả
+UPDATE Loan SET status = 'Quá hạn' WHERE status = 'Đang mượn' AND returnDate < CURDATE()
