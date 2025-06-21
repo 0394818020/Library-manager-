@@ -590,6 +590,10 @@ public class MAINVIEW extends javax.swing.JFrame implements view {
         return model_book;
     }
     
+    public DefaultTableModel getnvModel () {
+        return model_nhanvien;
+    }
+    
     public void show_Book () {
         list_book = bookController.getList();
         showData(list_book, model_book);

@@ -152,4 +152,21 @@ public class NhanVienDAO implements BRDAO<NhanVien>{
             e.printStackTrace();
         }
     }
+    
+    public void update(String maNV, String name, String email, int yearOfBirth, String number_phone) {
+        try (Connection conn = DBConnection.connection()) {
+            String sql = "UPDATE NhanVien SET name = ?, email = ?, yearOfBirth = ?, number_phone = ? WHERE maNV = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, name);
+            ps.setString(2, email);
+            ps.setInt(3, yearOfBirth);
+            ps.setString(4, number_phone);
+            ps.setString(5, maNV);
+            
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
